@@ -4,6 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Representa um vendedor (Seller) com atributos como ID, nome, e-mail,
+ * data de nascimento, salário base e departamento associado.
+ * A classe implementa a interface Serializable para suportar serialização.
+ */
 public class Seller implements Serializable {
   private Integer id;
   private String name;
@@ -12,9 +17,23 @@ public class Seller implements Serializable {
   private Double baseSalary;
   private Department department;
 
+  /**
+   * Construtor padrão da classe Seller.
+   * Inicializa os atributos com valores padrão.
+   */
   public Seller() {
   }
 
+  /**
+   * Construtor da classe Seller que permite a inicialização de todos os atributos.
+   *
+   * @param id          O ID do vendedor.
+   * @param name        O nome do vendedor.
+   * @param email       O endereço de e-mail do vendedor.
+   * @param birthDate   A data de nascimento do vendedor.
+   * @param baseSalary  O salário base do vendedor.
+   * @param department  O departamento associado ao vendedor.
+   */
   public Seller(Integer id, String name, String email, Date birthDate, Double baseSalary, Department department) {
     this.id = id;
     this.name = name;

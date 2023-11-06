@@ -5,10 +5,19 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
-public class DB {
 
+/**
+ * Classe utilitária para operações de banco de dados, incluindo conexão, fechamento de recursos e
+ * carregamento de propriedades de configuração do banco de dados.
+ */
+public class DB {
   private static Connection conn = null;
 
+  /**
+   * Obtém uma conexão de banco de dados.
+   *
+   * @return Uma instância de Connection representando a conexão com o banco de dados.
+   */
   public static  Connection getConnection() {
     if (conn == null) {
       try {
@@ -23,6 +32,11 @@ public class DB {
     return conn;
   }
 
+  /**
+   * Carrega as propriedades de configuração do banco de dados a partir de um arquivo.
+   *
+   * @return Um objeto Properties contendo as propriedades de configuração do banco de dados.
+   */
   private static Properties loadProperties() {
 
     try(FileInputStream fs = new FileInputStream("db.properties")) {
@@ -35,6 +49,9 @@ public class DB {
     }
   }
 
+  /**
+   * Fecha a conexão com o banco de dados, se estiver aberta.
+   */
   public static void closeConnection() {
     if (conn != null) {
       try {
@@ -46,6 +63,11 @@ public class DB {
     }
   }
 
+  /**
+   * Fecha um Statement, liberando os recursos associados a ele.
+   *
+   * @param st O objeto Statement a ser fechado.
+   */
   public static void closeStatement(Statement st) {
     if (st != null) {
       try {
@@ -57,6 +79,11 @@ public class DB {
     }
   }
 
+  /**
+   * Fecha um ResultSet, liberando os recursos associados a ele.
+   *
+   * @param rs O objeto ResultSet a ser fechado.
+   */
   public static void closeResultSet(ResultSet rs) {
     if (rs != null) {
       try {
@@ -67,5 +94,4 @@ public class DB {
       }
     }
   }
-
 }

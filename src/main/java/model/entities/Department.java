@@ -3,14 +3,29 @@ package model.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+
+/**
+ * Representa um departamento (Department) com atributos como ID e nome.
+ * A classe implementa a interface Serializable para suportar serialização.
+ */
 public class Department implements Serializable {
 
   private Integer id;
   private String name;
 
+  /**
+   * Construtor padrão da classe Department.
+   * Inicializa os atributos com valores padrão.
+   */
   public Department() {
   }
 
+  /**
+   * Construtor da classe Department que permite a inicialização de todos os atributos.
+   *
+   * @param id    O ID do departamento.
+   * @param name  O nome do departamento.
+   */
   public Department(Integer id, String name) {
     this.id = id;
     this.name = name;

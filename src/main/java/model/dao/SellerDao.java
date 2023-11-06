@@ -1,5 +1,6 @@
 package model.dao;
 
+import model.entities.Department;
 import model.entities.Seller;
 
 import java.util.List;
@@ -43,4 +44,12 @@ public interface SellerDao {
    * @return Uma lista de objetos Seller contendo todos os vendedores no banco de dados.
    */
   List<Seller> findAll();
+
+  /**
+   * Busca vendedores com base no departament especificado.
+   *
+   * @param department O ID do department que se deseja buscar no banco de dados.
+   * @return Uma lista de objetos Seller contendo os vendedores que pertencem ao departamento especificado.
+   */
+  List<Seller> findByDepartment(Department department);
 }

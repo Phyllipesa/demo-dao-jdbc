@@ -145,6 +145,16 @@ public class DepartmentDaoJDBC implements DepartmentDao {
     }
   }
 
+  /**
+   * instantiateDepartment - Cria e retorna um objeto Department a partir dos dados obtidos de um ResultSet.
+   *
+   * Este método é responsável por criar um objeto Department com base nas informações
+   * recuperadas de um ResultSet, incluindo o ID e o nome do departamento.
+   *
+   * @param rs O ResultSet que contém os dados do departamento.
+   * @return Um objeto Department criado a partir dos dados no ResultSet.
+   * @throws SQLException Lançada em caso de erro ao acessar dados no ResultSet.
+   */
   private Department instantiateDepartment(ResultSet rs) throws SQLException {
     return new Department(
         rs.getInt("Id"),

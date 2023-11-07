@@ -89,9 +89,27 @@ public class DepartmentDaoJDBC implements DepartmentDao {
     }
   }
 
+  /**
+   * Remove um departamento do banco de dados com base em seu ID.
+   *
+   * @param id O ID do departamento a ser excluído do banco de dados.
+   * @throws DbException Lançada em caso de erro ao acessar o banco de dados.
+   */
   @Override
   public void deleteById(Integer id) {
-
+    PreparedStatement st = null;
+    try {
+      st = conn.prepareStatement(
+          "DELETE FROM department WHERE Id = ?");
+      st.setInt(1, id);
+      st.executeUpdate();
+    }
+    catch (SQLException e) {
+      throw new DbException(e.getMessage());
+    }
+    finally {
+      DB.closeStatement(st);
+    }
   }
 
   @Override

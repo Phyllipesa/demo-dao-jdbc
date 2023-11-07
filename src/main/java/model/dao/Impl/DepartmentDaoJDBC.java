@@ -62,9 +62,31 @@ public class DepartmentDaoJDBC implements DepartmentDao {
     }
   }
 
+  /**
+   * update - Atualiza as informações de um departamento no banco de dados.
+   *
+   * @param obj O objeto Department com as informações atualizadas a serem persistidas.
+   * @throws DbException Lançada em caso de erro ao acessar o banco de dados.
+   */
   @Override
   public void update(Department obj) {
+    PreparedStatement st = null;
+    try {
+      st = conn.prepareStatement(
+          "UPDATE department SET Name = ? "
+              + "WHERE Id = ?", Statement.RETURN_GENERATED_KEYS
+      );
 
+      st.setString(1, obj.getName());
+      st.setInt(2, obj.getId());
+      st.executeUpdate();
+    }
+    catch (SQLException e) {
+      throw new DbException(e.getMessage());
+    }
+    finally {
+      DB.closeStatement(st);
+    }
   }
 
   @Override

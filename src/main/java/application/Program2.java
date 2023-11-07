@@ -27,5 +27,11 @@ public class Program2 {
     int id = sc.nextInt();
     departmentDao.deleteById(id);
     System.out.println("Delete completed!");
+
+    System.out.println("\n=== TEST 4: department findById ===");
+    System.out.print("Enter id to search: ");
+    id = sc.nextInt();
+    Department dep = departmentDao.findById(id);
+    System.out.println(dep);
   }
 }

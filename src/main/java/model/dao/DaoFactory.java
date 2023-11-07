@@ -1,6 +1,7 @@
 package model.dao;
 
 import database.DB;
+import model.dao.Impl.DepartmentDaoJDBC;
 import model.dao.Impl.SellerDaoJDBC;
 
 /**
@@ -16,5 +17,14 @@ public class DaoFactory {
    */
   public static SellerDao createSellerDao() {
     return new SellerDaoJDBC(DB.getConnection());
+  }
+
+  /**
+   * Cria e retorna uma instância de DepartmentDao com uma conexão de banco de dados.
+   *
+   * @return Uma instância de DepartmentDao configurada com uma conexão de banco de dados.
+   */
+  public static DepartmentDao createDepartmentDao() {
+    return new DepartmentDaoJDBC(DB.getConnection());
   }
 }

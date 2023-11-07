@@ -42,7 +42,7 @@ public class Program {
         4000.0,
         department);
     sellerDao.insert(newSeller);
-    System.out.println("Inserted! nem id = " + newSeller.getId());
+    System.out.println("Inserted! new id = " + newSeller.getId());
 
     System.out.println("\n=== TEST 5: seller update ===");
     seller = sellerDao.findById(1);

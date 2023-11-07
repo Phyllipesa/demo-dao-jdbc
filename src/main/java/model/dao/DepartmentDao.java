@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Esta interface define métodos para acessar e manipular dados de departamentos (Department) no banco de dados.
  */
-public interface ClientDao {
+public interface DepartmentDao {
   /**
    * Insere um departamento no banco de dados.
    *
@@ -27,7 +27,7 @@ public interface ClientDao {
    *
    * @param obj O objeto Department a ser removido do banco de dados.
    */
-  void deleteById(Department obj);
+  void deleteById(Integer id);
 
   /**
    * Busca um departamento no banco de dados com base em seu ID.

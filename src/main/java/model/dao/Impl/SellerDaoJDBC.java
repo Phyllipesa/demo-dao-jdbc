@@ -6,14 +6,9 @@ import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.*;
+import java.sql.Date;
+import java.util.*;
 
 /**
  * Implementação concreta da interface SellerDao que interage com o banco de dados usando JDBC.
@@ -31,9 +26,48 @@ public class SellerDaoJDBC implements SellerDao {
     this.conn = conn;
   }
 
+  /**
+   * Insere um novo vendedor no banco de dados.
+   *
+   * @param obj O objeto Seller a ser inserido no banco de dados.
+   * @throws DbException Lançada em caso de erro ao acessar o banco de dados ou se nenhuma linha foi afetada pela inserção.
+   */
   @Override
   public void insert(Seller obj) {
+    PreparedStatement st = null;
+    try {
+      st = conn.prepareStatement(
+          "INSERT INTO seller "
+              + "(Name, Email, BirthDate, BaseSalary, DepartmentId) "
+              + "VALUES "
+              + "(?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS
+      );
 
+      st.setString(1, obj.getName());
+      st.setString(2, obj.getEmail());
+      st.setDate(3,new Date(obj.getBirthDate().getTime()));
+      st.setDouble(4, obj.getBaseSalary());
+      st.setInt(5, obj.getDepartment().getId());
+
+      int rowsAffected = st.executeUpdate();
+
+      if (rowsAffected > 0) {
+        ResultSet rs = st.getGeneratedKeys();
+        if (rs.next()) {
+          int id = rs.getInt(1);
+          obj.setId(id);
+        }
+        DB.closeResultSet(rs);
+      }
+      else {
+        throw new DbException("Unexpected error! No rows affected!");
+      }
+    } catch (SQLException e) {
+      throw new DbException(e.getMessage());
+    }
+    finally {
+      DB.closeStatement(st);
+    }
   }
 
   @Override

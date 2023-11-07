@@ -26,9 +26,9 @@ public interface SellerDao {
   /**
    * Remove um vendedor do banco de dados com base em seu ID.
    *
-   * @param obj O objeto Seller a ser removido do banco de dados.
+   * @param id O do vendedor a ser removido do banco de dados.
    */
-  void deleteById(Seller obj);
+  void deleteById(Integer id);
 
   /**
    * Busca um vendedor no banco de dados com base em seu ID.

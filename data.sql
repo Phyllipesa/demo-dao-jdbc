@@ -1,3 +1,7 @@
+CREATE DATABASE IF NOT EXISTS coursejdbc;
+
+USE coursejdbc;
+
 CREATE TABLE department (
   Id int(11) NOT NULL AUTO_INCREMENT,
   Name varchar(60) DEFAULT NULL,
